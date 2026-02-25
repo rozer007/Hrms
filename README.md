@@ -118,46 +118,6 @@ npm run dev
 ```
 
 ---
-
-## Deployment
-
-### Backend → Render
-
-1. Push code to GitHub
-2. Go to [render.com](https://render.com) → New → Web Service
-3. Connect your repo, set root directory to `backend/`
-4. **Build Command:** `pip install -r requirements.txt`
-5. **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
-6. Add environment variable: `DATABASE_URL` → from your Render PostgreSQL instance
-7. Create a **Render PostgreSQL** database: New → PostgreSQL (free tier)
-8. Copy the **Internal Database URL** into the web service's `DATABASE_URL`
-
-> Tables are auto-created on startup via SQLAlchemy `create_all`.
-
-### Frontend → Vercel
-
-1. Go to [vercel.com](https://vercel.com) → New Project
-2. Import your GitHub repo, set root directory to `frontend/`
-3. **Framework:** Vite (auto-detected)
-4. Add environment variable: `VITE_API_URL` = your Render backend URL (e.g. `https://hrms-lite-api.onrender.com`)
-5. Deploy
-
----
-
-## Environment Variables
-
-### Backend
-| Variable | Description |
-|----------|-------------|
-| `DATABASE_URL` | PostgreSQL connection string (auto-handled for Render's `postgres://` format) |
-
-### Frontend
-| Variable | Description |
-|----------|-------------|
-| `VITE_API_URL` | Backend base URL (e.g. `https://hrms-api.onrender.com`) |
-
----
-
 ## Design Decisions
 
 - **No auth** – Single admin user as specified; no login required
